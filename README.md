@@ -1,47 +1,69 @@
 # ReconAI — AI Finance Controller
 
-An AI-powered financial reconciliation system built for the Razorpay Buildathon.
+ReconAI is an AI-assisted financial reconciliation system built for the Razorpay Buildathon.
+
+It reconciles orders, payments, and settlements, detects financial exceptions, investigates suspicious cases, and maintains an audit trail for every investigation.
 
 ## Problem
 
-Businesses often need to reconcile orders, payments, and settlement records across multiple sources.
+Financial reconciliation often requires comparing records from multiple systems.
 
-Manual reconciliation can lead to:
+Manual reconciliation can result in:
 
-- Missed mismatches
-- Duplicate transactions
+- Amount mismatches
+- Pending or failed payments
 - Missing settlements
-- Incorrect matches
+- Duplicate transactions
 - Unresolved financial exceptions
+- Limited visibility into why a transaction was flagged
 
-## Proposed Solution
+## Solution
 
-ReconAI automatically reconciles financial records using deterministic rules for clear matches and AI-assisted reasoning for ambiguous cases.
+ReconAI automates the reconciliation workflow.
 
-## Core Workflow
+The system:
 
-Orders + Payments + Settlements
-        ↓
-Reconciliation Engine
-        ↓
-Clear Matches → Automatically Resolved
-        ↓
-Ambiguous Cases → AI Investigation
-        ↓
-Unresolved Cases → Exception Queue
-        ↓
-Audit Trail + Reconciliation Report
+1. Reads orders, payments, and settlement records.
+2. Matches records using deterministic reconciliation rules.
+3. Detects mismatches and incomplete settlements.
+4. Classifies exceptions by severity and reason.
+5. Uses an AI investigation layer to recommend the next action.
+6. Maintains an audit trail of investigation events.
+7. Displays the results through an interactive dashboard.
 
-## Planned Technology
+## Architecture
 
-- Python
-- PostgreSQL
-- Pandas
-- FastAPI
-- AI/LLM
-- Streamlit
-- Git & GitHub
-
-## Project Status
-
-🚧 Currently under development.
+```text
+Orders
+   │
+   ├──────────────┐
+   │              │
+Payments          │
+   │              │
+   └──────┬───────┘
+          │
+     Settlements
+          │
+          ▼
+ Reconciliation Engine
+          │
+     ┌────┴─────┐
+     │          │
+   MATCHED   EXCEPTION
+     │          │
+ AUTO-RESOLVE  ▼
+          AI Investigation
+               │
+        ┌──────┴──────┐
+        │             │
+   FOLLOW_UP    REVIEW_REQUIRED
+        │             │
+        └──────┬──────┘
+               ▼
+        Exception Queue
+               │
+               ▼
+          Audit Trail
+               │
+               ▼
+      Streamlit Dashboard

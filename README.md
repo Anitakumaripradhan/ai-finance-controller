@@ -4,6 +4,10 @@ ReconAI is an AI-assisted financial reconciliation system built for the Razorpay
 
 It reconciles orders, payments, and settlements, detects financial exceptions, investigates suspicious cases, and maintains an audit trail for every investigation.
 
+## Dashboard
+
+![ReconAI Dashboard](docs/dashboard.png)
+
 ## Problem
 
 Financial reconciliation often requires comparing records from multiple systems.
